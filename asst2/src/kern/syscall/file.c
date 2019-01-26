@@ -198,48 +198,61 @@ int sys_dup2(int oldfd, int newfd) {
 int sys_lseek(int fd, off_t pos, userptr_t whence_ptr, off_t *ret) {
 	struct File *file;
 	struct stat stats;
-	int whence;
+
+	int lseek_location;
+	
 	if(fd < 0 || fd > MAX_PROCESS_OPEN_FILES || !(file = curproc->file_table[fd])){
 		return EBADF;
 	}
+
 	if(!VOP_ISSEEKABLE(file->v_ptr)){
 		return ESPIPE;
 	}
+
 	int result = VOP_STAT(file->v_ptr, &stats);
 	if(result){
 		return result;
 	}
-	result = copyin(whence_ptr, &whence, sizeof(int));
+
+	result = copyin(whence_ptr, &lseek_location, sizeof(int));
 	if(result) {
 		return result;
 	}
-	switch(whence){
+	
+	switch(lseek_location){
 		case SEEK_SET:
 			if(pos < 0){
 				return EINVAL;
 			}
+			
 			lock_acquire(file->flock);
 			*ret = file->offset = pos;
 			lock_release(file->flock);
+			
 			break;
 
 		case SEEK_CUR:
 			lock_acquire(file->flock);
+			
 			if(file->offset + pos < 0){
 				lock_release(file->flock);
 				return EINVAL;
 			}
 			*ret = file->offset += pos;
+
 			lock_release(file->flock);
+			
 			break;
 		
 		case SEEK_END:
 			if(stats.st_size + pos < 0){
 				return EINVAL;
 			}
+			
 			lock_acquire(file->flock);
 			*ret = file->offset = stats.st_size + pos; 
 			lock_release(file->flock);
+			
 			break;
 
 		default:

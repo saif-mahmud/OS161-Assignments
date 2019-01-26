@@ -25,9 +25,9 @@
 
 static int open(char *filename, int flags, int descriptor);
 static int close(int filehandler, struct proc *proc);
-static int open_file_cnt=0;
 
-//Main Functions
+static int NUM_OPEN_FILES = 0;
+
 /*
 int sys_fork(struct trapframe *tframe,int *retval)
 {
@@ -77,7 +77,7 @@ int sys_open(userptr_t filename, int flags, int *ret) {
 		return EMFILE;
 	}
 	
-	if (open_file_cnt >= MAX_SYSTEM_OPEN_FILES) {
+	if (NUM_OPEN_FILES >= MAX_SYSTEM_OPEN_FILES) {
 		kfree(kfilename);
 		return ENFILE;
 	}
@@ -89,7 +89,7 @@ int sys_open(userptr_t filename, int flags, int *ret) {
 	}
 
 	*ret = fd;
-	open_file_cnt++;
+	NUM_OPEN_FILES++;
 	
 	return 0;
 }
@@ -300,6 +300,7 @@ static int open(char *filename, int flags, int descriptor){
 }
 
 static int close(int filehandler, struct proc *proc) {
+
 	if(filehandler < 0 || filehandler >= MAX_PROCESS_OPEN_FILES || !proc->file_table[filehandler]) {
 		return EBADF;
 	}
@@ -307,17 +308,23 @@ static int close(int filehandler, struct proc *proc) {
 	struct File *file = proc->file_table[filehandler];
 
 	lock_acquire(file->flock);
+	
 	proc->file_table[filehandler] = NULL;
 	file->references --;
+	
 	if(file->references<=0) {
+		
 		lock_release(file->flock);
 		vfs_close(file->v_ptr);
 		lock_destroy(file->flock);
+		
 		kfree(file);
 	}
-	else{
+	else {
 		lock_release(file->flock);
 	}
-	open_file_cnt--;
+
+	NUM_OPEN_FILES--;
+	
 	return 0;
 }

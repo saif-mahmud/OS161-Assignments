@@ -136,27 +136,36 @@ int sys_read(int filehandler, userptr_t buf, size_t size, int *ret) {
 }
 
 int sys_write(int filehandler, userptr_t buf, size_t size, int *ret) {
-	struct iovec fiovec;
-	struct uio fuio;
+	struct iovec file_iovec;
+	struct uio write_uio;
+
 	if(filehandler < 0 || filehandler >= MAX_PROCESS_OPEN_FILES || !curproc->file_table[filehandler]) {		
 		return EBADF;
 	}
+
 	struct File *file = curproc->file_table[filehandler];
+
 	int mode = file->open_flags & O_ACCMODE;
 	if (mode == O_RDONLY) {
 		return EBADF;
 	}
+	
 	lock_acquire(file->flock);
+	
 	off_t old_offset = file->offset;
-	uio_uinit(&fiovec, &fuio, buf, size, file->offset, UIO_WRITE);
-	int result = VOP_WRITE(file->v_ptr, &fuio);
+	uio_uinit(&file_iovec, &write_uio, buf, size, file->offset, UIO_WRITE);
+	
+	int result = VOP_WRITE(file->v_ptr, &write_uio);
 	if (result) {
 		lock_release(file->flock);
 		return result;
 	}
-	file->offset = fuio.uio_offset;
+	
+	file->offset = write_uio.uio_offset;
 	*ret = file->offset - old_offset;
+	
 	lock_release(file->flock);
+	
 	return 0;
 }
 

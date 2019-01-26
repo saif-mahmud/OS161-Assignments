@@ -262,36 +262,43 @@ int sys_lseek(int fd, off_t pos, userptr_t whence_ptr, off_t *ret) {
 	return 0;
 }
 
-//Helper Functions
-
 static int open(char *filename, int flags, int descriptor){
+
 	struct File *file = kmalloc(sizeof(struct File*));
+	
 	int result;
 	struct vnode *vn;
+	
 	if(!file){
 		return ENFILE;
 	}
  
 	result = vfs_open(filename, flags, 0, &vn);
+
 	if (result) {
 		kfree(file);
 		return result;
 	}
 
 	file->flock = lock_create("lock create");
+
 	if(!file->flock) {
 		vfs_close(file->v_ptr);
 		kfree(file);
+
 		return ENFILE;
 	}
+
 	file->offset = 0;
 	file->open_flags = flags;
 	file->references = 1;
 	file->v_ptr=vn;
+	
 	curproc->file_table[descriptor] = file;
 
 	return 0;
 }
+
 static int close(int filehandler, struct proc *proc) {
 	if(filehandler < 0 || filehandler >= MAX_PROCESS_OPEN_FILES || !proc->file_table[filehandler]) {
 		return EBADF;

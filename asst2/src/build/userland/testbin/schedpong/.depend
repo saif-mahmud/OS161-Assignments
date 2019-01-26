@@ -1,0 +1,96 @@
+$(MYBUILDDIR)/main.o: \
+ main.c \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/sys/wait.h \
+ $(INSTALLTOP)/include/unistd.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/kern/fcntl.h \
+ $(INSTALLTOP)/include/kern/ioctl.h \
+ $(INSTALLTOP)/include/kern/reboot.h \
+ $(INSTALLTOP)/include/kern/seek.h \
+ $(INSTALLTOP)/include/kern/time.h \
+ $(INSTALLTOP)/include/kern/unistd.h \
+ $(INSTALLTOP)/include/kern/wait.h \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/err.h \
+ usem.h \
+ tasks.h \
+ results.h
+$(MYBUILDDIR)/think.o: \
+ think.c \
+ tasks.h
+$(MYBUILDDIR)/grind.o: \
+ grind.c \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/errno.h \
+ $(INSTALLTOP)/include/kern/errno.h \
+ tasks.h
+$(MYBUILDDIR)/pong.o: \
+ pong.c \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/assert.h \
+ usem.h \
+ tasks.h
+$(MYBUILDDIR)/results.o: \
+ results.c \
+ $(INSTALLTOP)/include/unistd.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/kern/fcntl.h \
+ $(INSTALLTOP)/include/kern/ioctl.h \
+ $(INSTALLTOP)/include/kern/reboot.h \
+ $(INSTALLTOP)/include/kern/seek.h \
+ $(INSTALLTOP)/include/kern/time.h \
+ $(INSTALLTOP)/include/kern/unistd.h \
+ $(INSTALLTOP)/include/kern/wait.h \
+ $(INSTALLTOP)/include/fcntl.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/errno.h \
+ $(INSTALLTOP)/include/kern/errno.h \
+ $(INSTALLTOP)/include/assert.h \
+ results.h
+$(MYBUILDDIR)/usem.o: \
+ usem.c \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/stdarg.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/unistd.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/fcntl.h \
+ $(INSTALLTOP)/include/kern/ioctl.h \
+ $(INSTALLTOP)/include/kern/reboot.h \
+ $(INSTALLTOP)/include/kern/seek.h \
+ $(INSTALLTOP)/include/kern/time.h \
+ $(INSTALLTOP)/include/kern/unistd.h \
+ $(INSTALLTOP)/include/kern/wait.h \
+ $(INSTALLTOP)/include/err.h \
+ usem.h

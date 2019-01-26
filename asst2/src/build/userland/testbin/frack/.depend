@@ -1,0 +1,152 @@
+$(MYBUILDDIR)/main.o: \
+ main.c \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ workloads.h \
+ main.h
+$(MYBUILDDIR)/workloads.o: \
+ workloads.c \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/unistd.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/fcntl.h \
+ $(INSTALLTOP)/include/kern/ioctl.h \
+ $(INSTALLTOP)/include/kern/reboot.h \
+ $(INSTALLTOP)/include/kern/seek.h \
+ $(INSTALLTOP)/include/kern/time.h \
+ $(INSTALLTOP)/include/kern/unistd.h \
+ $(INSTALLTOP)/include/kern/wait.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/errno.h \
+ $(INSTALLTOP)/include/kern/errno.h \
+ $(INSTALLTOP)/include/err.h \
+ ops.h \
+ workloads.h \
+ $(INSTALLTOP)/include/stdio.h
+$(MYBUILDDIR)/ops.o: \
+ ops.c \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/unistd.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/kern/fcntl.h \
+ $(INSTALLTOP)/include/kern/ioctl.h \
+ $(INSTALLTOP)/include/kern/reboot.h \
+ $(INSTALLTOP)/include/kern/seek.h \
+ $(INSTALLTOP)/include/kern/time.h \
+ $(INSTALLTOP)/include/kern/unistd.h \
+ $(INSTALLTOP)/include/kern/wait.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h \
+ pool.h \
+ data.h \
+ do.h \
+ check.h \
+ ops.h \
+ main.h
+$(MYBUILDDIR)/do.o: \
+ do.c \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/sys/stat.h \
+ $(INSTALLTOP)/include/kern/stat.h \
+ $(INSTALLTOP)/include/kern/stattypes.h \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/unistd.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/kern/fcntl.h \
+ $(INSTALLTOP)/include/kern/ioctl.h \
+ $(INSTALLTOP)/include/kern/reboot.h \
+ $(INSTALLTOP)/include/kern/seek.h \
+ $(INSTALLTOP)/include/kern/time.h \
+ $(INSTALLTOP)/include/kern/unistd.h \
+ $(INSTALLTOP)/include/kern/wait.h \
+ $(INSTALLTOP)/include/err.h \
+ data.h \
+ name.h \
+ do.h
+$(MYBUILDDIR)/check.o: \
+ check.c \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/sys/stat.h \
+ $(INSTALLTOP)/include/kern/stat.h \
+ $(INSTALLTOP)/include/kern/stattypes.h \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/stdarg.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/unistd.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/kern/fcntl.h \
+ $(INSTALLTOP)/include/kern/ioctl.h \
+ $(INSTALLTOP)/include/kern/reboot.h \
+ $(INSTALLTOP)/include/kern/seek.h \
+ $(INSTALLTOP)/include/kern/time.h \
+ $(INSTALLTOP)/include/kern/unistd.h \
+ $(INSTALLTOP)/include/kern/wait.h \
+ $(INSTALLTOP)/include/limits.h \
+ $(INSTALLTOP)/include/kern/limits.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/errno.h \
+ $(INSTALLTOP)/include/kern/errno.h \
+ $(INSTALLTOP)/include/err.h \
+ name.h \
+ data.h \
+ pool.h \
+ check.h
+$(MYBUILDDIR)/pool.o: \
+ pool.c \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ pool.h
+$(MYBUILDDIR)/data.o: \
+ data.c \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/assert.h \
+ data.h
+$(MYBUILDDIR)/name.o: \
+ name.c \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ name.h

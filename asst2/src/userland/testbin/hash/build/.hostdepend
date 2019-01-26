@@ -1,0 +1,3 @@
+$(MYBUILDDIR)/hash.ho: \
+ hash.c \
+ $(INSTALLTOP)/hostinclude/hostcompat.h

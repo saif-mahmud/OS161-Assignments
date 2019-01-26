@@ -1,0 +1,10 @@
+$(MYBUILDDIR)/poisondisk.ho: \
+ poisondisk.c \
+ $(INSTALLTOP)/hostinclude/hostcompat.h \
+ ../../sbin/mksfs/disk.h
+$(MYBUILDDIR)/disk.ho: \
+ ../../sbin/mksfs/disk.c \
+ ../../sbin/mksfs/support.h \
+ ../../sbin/mksfs/disk.h
+$(MYBUILDDIR)/support.ho: \
+ ../../sbin/mksfs/support.c

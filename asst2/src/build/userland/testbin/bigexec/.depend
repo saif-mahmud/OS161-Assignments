@@ -1,0 +1,23 @@
+$(MYBUILDDIR)/bigexec.o: \
+ bigexec.c \
+ $(INSTALLTOP)/include/stdarg.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/unistd.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/fcntl.h \
+ $(INSTALLTOP)/include/kern/ioctl.h \
+ $(INSTALLTOP)/include/kern/reboot.h \
+ $(INSTALLTOP)/include/kern/seek.h \
+ $(INSTALLTOP)/include/kern/time.h \
+ $(INSTALLTOP)/include/kern/unistd.h \
+ $(INSTALLTOP)/include/kern/wait.h \
+ $(INSTALLTOP)/include/limits.h \
+ $(INSTALLTOP)/include/kern/limits.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h

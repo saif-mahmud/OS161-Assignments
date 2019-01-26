@@ -1,0 +1,99 @@
+$(MYBUILDDIR)/main.ho: \
+ main.c \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/hostinclude/hostcompat.h \
+ ../mksfs/disk.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ inode.h \
+ passes.h \
+ main.h
+$(MYBUILDDIR)/pass1.ho: \
+ pass1.c \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/hostinclude/hostcompat.h \
+ $(INSTALLTOP)/hostinclude/kern/sfs.h \
+ ../mksfs/disk.h \
+ utils.h \
+ ibmacros.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ inode.h \
+ passes.h \
+ main.h
+$(MYBUILDDIR)/pass2.ho: \
+ pass2.c \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/hostinclude/hostcompat.h \
+ $(INSTALLTOP)/hostinclude/kern/sfs.h \
+ ../mksfs/disk.h \
+ utils.h \
+ ibmacros.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ inode.h \
+ passes.h \
+ main.h
+$(MYBUILDDIR)/inode.ho: \
+ inode.c \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/hostinclude/hostcompat.h \
+ $(INSTALLTOP)/hostinclude/kern/sfs.h \
+ utils.h \
+ sfs.h \
+ freemap.h \
+ inode.h \
+ main.h
+$(MYBUILDDIR)/freemap.ho: \
+ freemap.c \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/hostinclude/hostcompat.h \
+ $(INSTALLTOP)/hostinclude/kern/sfs.h \
+ utils.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ main.h
+$(MYBUILDDIR)/sb.ho: \
+ sb.c \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/hostinclude/hostcompat.h \
+ $(INSTALLTOP)/hostinclude/kern/sfs.h \
+ utils.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ main.h
+$(MYBUILDDIR)/sfs.ho: \
+ sfs.c \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/hostinclude/hostcompat.h \
+ $(INSTALLTOP)/hostinclude/kern/sfs.h \
+ ../mksfs/disk.h \
+ utils.h \
+ ibmacros.h \
+ sfs.h \
+ main.h
+$(MYBUILDDIR)/utils.ho: \
+ utils.c \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/hostinclude/hostcompat.h \
+ utils.h \
+ main.h
+$(MYBUILDDIR)/disk.ho: \
+ ../mksfs/disk.c \
+ ../mksfs/support.h \
+ ../mksfs/disk.h
+$(MYBUILDDIR)/support.ho: \
+ ../mksfs/support.c

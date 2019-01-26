@@ -1,0 +1,203 @@
+$(MYBUILDDIR)/main.o: \
+ main.c \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ compat.h \
+ ../mksfs/support.h \
+ ../mksfs/disk.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ inode.h \
+ passes.h \
+ main.h
+$(MYBUILDDIR)/pass1.o: \
+ pass1.c \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/include/kern/sfs.h \
+ ../mksfs/disk.h \
+ utils.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ ibmacros.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ inode.h \
+ passes.h \
+ main.h
+$(MYBUILDDIR)/pass2.o: \
+ pass2.c \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/include/kern/sfs.h \
+ ../mksfs/disk.h \
+ utils.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ ibmacros.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ inode.h \
+ passes.h \
+ main.h
+$(MYBUILDDIR)/inode.o: \
+ inode.c \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/include/kern/sfs.h \
+ utils.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ sfs.h \
+ freemap.h \
+ inode.h \
+ main.h
+$(MYBUILDDIR)/freemap.o: \
+ freemap.c \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/limits.h \
+ $(INSTALLTOP)/include/kern/limits.h \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/stdio.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/include/kern/sfs.h \
+ utils.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ main.h
+$(MYBUILDDIR)/sb.o: \
+ sb.c \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/limits.h \
+ $(INSTALLTOP)/include/kern/limits.h \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/include/kern/sfs.h \
+ utils.h \
+ sfs.h \
+ sb.h \
+ freemap.h \
+ main.h
+$(MYBUILDDIR)/sfs.o: \
+ sfs.c \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ compat.h \
+ ../mksfs/support.h \
+ $(INSTALLTOP)/include/kern/sfs.h \
+ ../mksfs/disk.h \
+ utils.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ ibmacros.h \
+ sfs.h \
+ main.h
+$(MYBUILDDIR)/utils.o: \
+ utils.c \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/stdlib.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/err.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ compat.h \
+ ../mksfs/support.h \
+ utils.h \
+ $(INSTALLTOP)/include/sys/types.h \
+ main.h
+$(MYBUILDDIR)/disk.o: \
+ ../mksfs/disk.c \
+ $(INSTALLTOP)/include/sys/types.h \
+ $(INSTALLTOP)/include/kern/types.h \
+ $(INSTALLTOP)/include/kern/machine/types.h \
+ $(INSTALLTOP)/include/types/size_t.h \
+ $(INSTALLTOP)/include/sys/null.h \
+ $(INSTALLTOP)/include/sys/stat.h \
+ $(INSTALLTOP)/include/kern/stat.h \
+ $(INSTALLTOP)/include/kern/stattypes.h \
+ $(INSTALLTOP)/include/unistd.h \
+ $(INSTALLTOP)/include/sys/cdefs.h \
+ $(INSTALLTOP)/include/kern/fcntl.h \
+ $(INSTALLTOP)/include/kern/ioctl.h \
+ $(INSTALLTOP)/include/kern/reboot.h \
+ $(INSTALLTOP)/include/kern/seek.h \
+ $(INSTALLTOP)/include/kern/time.h \
+ $(INSTALLTOP)/include/kern/unistd.h \
+ $(INSTALLTOP)/include/kern/wait.h \
+ $(INSTALLTOP)/include/assert.h \
+ $(INSTALLTOP)/include/stdint.h \
+ $(INSTALLTOP)/include/string.h \
+ $(INSTALLTOP)/include/errno.h \
+ $(INSTALLTOP)/include/kern/errno.h \
+ $(INSTALLTOP)/include/fcntl.h \
+ $(INSTALLTOP)/include/err.h \
+ ../mksfs/support.h \
+ ../mksfs/disk.h
+$(MYBUILDDIR)/support.o: \
+ ../mksfs/support.c

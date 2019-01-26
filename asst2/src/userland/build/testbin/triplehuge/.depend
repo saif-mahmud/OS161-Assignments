@@ -1,0 +1,3 @@
+$(MYBUILDDIR)/triplehuge.o: \
+ triplehuge.c \
+ $(INSTALLTOP)/include/test/triple.h

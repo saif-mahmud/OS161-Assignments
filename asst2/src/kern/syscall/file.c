@@ -45,43 +45,52 @@ int sys_fork(struct trapframe *tframe,int *retval)
 */
 
 int sys_open(userptr_t filename, int flags, int *ret) {
-	size_t got;
-	int i=3,result,err;
+	size_t length;
+
+	int fd, result, error_log;
+	
 	if (filename == NULL) {
 		return EFAULT;
 	}
+
 	char *kfilename = kmalloc((PATH_MAX)*sizeof(char));
+	
 	if (kfilename == NULL) {
 		return ENFILE;
 	}
-	result = copyinstr(filename, kfilename, PATH_MAX, &got);
+
+	result = copyinstr(filename, kfilename, PATH_MAX, &length);
+	
 	if (result) {
 		kfree(kfilename);
 		return result;
 	}
-	for (; i < MAX_PROCESS_OPEN_FILES; i++) {
+
+	for (fd = 3; fd < MAX_PROCESS_OPEN_FILES; fd++) {
 		if (curproc->file_table[i] == NULL) {
 			break;
 		}
 	}
-	if (i == MAX_PROCESS_OPEN_FILES) {
+	
+	if (fd == MAX_PROCESS_OPEN_FILES) {
 		kfree(kfilename);
 		return EMFILE;
 	}
-	if (open_file_cnt>=MAX_SYSTEM_OPEN_FILES)
-	{
+	
+	if (open_file_cnt >= MAX_SYSTEM_OPEN_FILES) {
 		kfree(kfilename);
 		return ENFILE;
 	}
 
-	err = open(kfilename, flags, i);
-	if(err){
+	error_log = open(kfilename, flags, i);
+	if(error_log){
 		kfree(kfilename);
-		return err;
+		return error_log;
 	}
 
-	*ret = i;
+	*ret = fd;
 	open_file_cnt++;
+	
 	return 0;
 }
 

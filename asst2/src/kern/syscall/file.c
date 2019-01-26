@@ -94,7 +94,11 @@ int sys_open(userptr_t filename, int flags, int *ret) {
 	return 0;
 }
 
-int sys_close(int filehandler) { return close(filehandler, curproc);}
+int sys_close(int filehandler) {
+	
+	return close(filehandler, curproc);
+
+}
 
 int sys_read(int filehandler, userptr_t buf, size_t size, int *ret) {
 	struct iovec iov;

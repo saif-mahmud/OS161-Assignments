@@ -170,22 +170,28 @@ int sys_write(int filehandler, userptr_t buf, size_t size, int *ret) {
 }
 
 int sys_dup2(int oldfd, int newfd) {
+
 	if(oldfd < 0 || oldfd >= MAX_PROCESS_OPEN_FILES || newfd < 0 || newfd >= MAX_PROCESS_OPEN_FILES || !curproc->file_table[oldfd]) {
 		return EBADF;
 	}
+
 	if(oldfd == newfd){
 		return 0;
 	}
+
 	if(curproc->file_table[newfd]){
 		int result = sys_close(newfd);
 		if(result){
 			return result;
 		}
 	}
+
 	struct File *file = curproc->file_table[newfd] = curproc->file_table[oldfd];
+	
 	lock_acquire(file->flock);
 	file->references++;
 	lock_release(file->flock);
+	
 	return 0;
 }
 

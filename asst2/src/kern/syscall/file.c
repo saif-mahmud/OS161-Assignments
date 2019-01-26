@@ -102,30 +102,36 @@ int sys_close(int filehandler) {
 
 int sys_read(int filehandler, userptr_t buf, size_t size, int *ret) {
 	struct iovec iov;
-	struct uio myuio;
+	struct uio read_uio;
+
 	if(filehandler < 0 || filehandler >= MAX_PROCESS_OPEN_FILES || !curproc->file_table[filehandler]) {
 		return EBADF;
 	}
+
 	struct File *file = curproc->file_table[filehandler];
 
 	int how = file->open_flags & O_ACCMODE;
+	
 	if (how == O_WRONLY) {
 		return EBADF;
 	}
+	
 	lock_acquire(file->flock);
 	off_t old_offset = file->offset;
 
-	uio_uinit(&iov, &myuio, buf, size, file->offset, UIO_READ);
+	uio_uinit(&iov, &read_uio, buf, size, file->offset, UIO_READ);
 
-	int result = VOP_READ(file->v_ptr, &myuio);
+	int result = VOP_READ(file->v_ptr, &read_uio);
+
 	if (result) {
 		lock_release(file->flock);
 		return result;
 	}
 
-	file->offset = myuio.uio_offset;
+	file->offset = read_uio.uio_offset;
 	*ret = file->offset - old_offset;
 	lock_release(file->flock);
+	
 	return 0;
 }
 

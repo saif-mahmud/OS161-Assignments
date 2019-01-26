@@ -110,9 +110,9 @@ int sys_read(int filehandler, userptr_t buf, size_t size, int *ret) {
 
 	struct File *file = curproc->file_table[filehandler];
 
-	int how = file->open_flags & O_ACCMODE;
+	int mode = file->open_flags & O_ACCMODE;
 	
-	if (how == O_WRONLY) {
+	if (mode == O_WRONLY) {
 		return EBADF;
 	}
 	
@@ -131,7 +131,7 @@ int sys_read(int filehandler, userptr_t buf, size_t size, int *ret) {
 	file->offset = read_uio.uio_offset;
 	*ret = file->offset - old_offset;
 	lock_release(file->flock);
-	
+
 	return 0;
 }
 
@@ -142,8 +142,8 @@ int sys_write(int filehandler, userptr_t buf, size_t size, int *ret) {
 		return EBADF;
 	}
 	struct File *file = curproc->file_table[filehandler];
-	int how = file->open_flags & O_ACCMODE;
-	if (how == O_RDONLY) {
+	int mode = file->open_flags & O_ACCMODE;
+	if (mode == O_RDONLY) {
 		return EBADF;
 	}
 	lock_acquire(file->flock);

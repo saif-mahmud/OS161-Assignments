@@ -1,0 +1,10 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Description of Implementation}{2}
+\contentsline {subsection}{\numberline {2.1}kern/include/syscall.h}{2}
+\contentsline {subsection}{\numberline {2.2}kern/arch/mips/syscall/syscall.c}{2}
+\contentsline {subsection}{\numberline {2.3}kern/include/proc.h}{3}
+\contentsline {subsection}{\numberline {2.4}kern/include/uio.h}{3}
+\contentsline {subsection}{\numberline {2.5}kern/lib/uio.c}{3}
+\contentsline {subsection}{\numberline {2.6}kern/include/file.h}{3}
+\contentsline {subsection}{\numberline {2.7}kern/syscall/file.c}{3}

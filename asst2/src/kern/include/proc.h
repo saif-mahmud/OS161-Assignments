@@ -26,6 +26,12 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
+/********************************
+
+Saif Mahmud (SH-54)
+Tauhid Tanjim (SH-58)
+
+*********************************/
 
 #ifndef _PROC_H_
 #define _PROC_H_

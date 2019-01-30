@@ -26,6 +26,12 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
+/********************************
+
+Saif Mahmud (SH-54)
+Tauhid Tanjim (SH-58)
+
+*********************************/
 
 #include <types.h>
 #include <kern/errno.h>
@@ -76,6 +82,13 @@
  * stack, starting at sp+16 to skip over the slots for the
  * registerized values, with copyin().
  */
+/********************************
+
+Saif Mahmud (SH-54)
+Tauhid Tanjim (SH-58)
+
+*********************************/
+
 void
 syscall(struct trapframe *tf)
 {
@@ -89,7 +102,7 @@ syscall(struct trapframe *tf)
 	KASSERT(curthread->t_iplhigh_count == 0);
 
 	callno = tf->tf_v0;
-	//kprintf("omi callno %d\n",callno);
+	
 	/*
 	 * Initialize retval to 0. Many of the system calls don't
 	 * really return a value, just 0 for success and -1 on

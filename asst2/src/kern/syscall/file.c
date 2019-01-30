@@ -1,3 +1,9 @@
+/********************************
+
+Saif Mahmud (SH-54)
+Tauhid Tanjim (SH-58)
+
+*********************************/
 #include <types.h>
 #include <kern/errno.h>
 #include <kern/fcntl.h>
@@ -27,22 +33,6 @@ static int open(char *filename, int flags, int descriptor);
 static int close(int filehandler, struct proc *proc);
 
 static int NUM_OPEN_FILES = 0;
-
-/*
-int sys_fork(struct trapframe *tframe,int *retval)
-{
-	char name[]="Omi";
-	struct proc *nproc=proc_create_runprogram(name);
-	nproc->par=curproc;
-	nproc->count=0;
-	filetable_init(nproc);
-	
-	
-	curproc->childlist[count]=nproc;
-	curproc->count++;
-	return 0;
-}
-*/
 
 int sys_open(userptr_t filename, int flags, int *ret) {
 	size_t length;

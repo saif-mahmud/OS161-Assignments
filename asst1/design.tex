@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{CSE 3211 : Operating System Assignment 1} %title of the report
+% author name: you and your partner
+\author{Saif Mahmud\\
+	2015-116-815 \& SH-54
+	\and
+	Tauhid Tanjim\\
+	2015-716-819 \& SH-58
+}
+\date{October 22, 2018}
+
+\begin{document}
+\maketitle
+
+\section{Concurrent Mathematics Problem}
+\label{sec:math}
+
+A number of threads are invoked in order to run the \textit{adder} function. The global variable \textit{counter} is loaded on the local variable \textit{a} and the problem occurs with the event of context switching. In the case where a thread switch occurs after loading \textit{counter} to \textit{a}, another thread will increase the value of \textit{counter}. Therefore, the comparison followed by this variable assignment with \textit{b} will result in false. The same problem will occur with the context switch after loading counter to \textit{b}. Therefore, we have defined \textit{counter} as the critical region of this program.
+
+In order to protect this critical area, binary semaphore \textit{lock\_cnt} is created before forking multiple threads. Each time a thread needs to acquire the lock before it can get access to the critical area \textit{counter}, and after executing the tasks, it releases the semaphore \textit{lock\_cnt}.
+
+\section{Paint Shop Synchronization Problem}
+\label{sec:paintshop}
+
+According to definition of the problem, we have maintained two buffers. The first one is \textit{order\_buffer} which maintains the ordered and yet to be mixed paint cans. Another is \textit{delivery\_buffer} which represents the mixed and yet to be shipped paint cans. Here, these two buffers are defined as critical regions.
+
+\subsection{void paintshop\_open(void)}
+Initialization of required binary and counting semaphores as well as two buffers using functions \textit{init\_semaphore()} and \textit{init\_buffer()} respectively. We have also initialized the variable \textit{remaining\_customers} with the number of customers \textit{(NCUSTOMERS)} here.
+
+\subsection{void order\_paint(paint\_can *can)}
+In this function, we have first placed the \textit{paint\_can} in the \textit{order\_buffer}. Before doing this, we have to put a wait on the counting semaphore \textit{order\_buffer\_empty} which demonstrates the number of empty slots in the \textit{order\_buffer}. It prevents the threads accessing \textit{order\_buffer} when it is full which results in eliminating the problem of busy waiting for deadlock resolution. We have used the binary semaphore \textit{order\_mutex} in order to control access to the critical region \textit{order\_buffer}.
+
+Afterwards, we have searched the \textit{delivery\_buffer} looking for if the parameter \textit{paint\_can} is ready. We have used a binary semaphore \textit{delivery\_mutex} in order to prevent simultaneous access to \textit{delivery\_buffer}. However, searching the \textit{delivery\_buffer} creates a problem of busy waiting and so, we have put a wait on the semaphore \textit{ready\_cans}. If the ordered paint can is found, then the function removes the can from the \textit{delivery\_buffer}. Otherwise, it signals the semaphore to wake up another thread waiting on it. 
+
+\subsection{void go\_home(void)}
+After getting delivery of the desired \textit{paint\_can} the customer would be able to call this function. We have decreased the value of \textit{remaining\_customer} by 1 in order that the variable always reflects the number of present customers. However, it is possible for two \textit{customer} threads to use this function simultaneously and therefore, we have used a binary semaphore \textit{remaining\_customers\_mutex} in order to prevent access to the critical region at the same time.
+
+\subsection{void * take\_order(void)}
+In this function, the loop checks whether \textit{remaining\_customer} is 0. If it is the case, the function returns NULL which results in \textit{staff thread} to be terminated. Otherwise, it iterates through the \textit{order\_buffer} and pick an order for shipment. In this regard, we have avoided busy waiting using the semaphore \textit{order\_buffer\_full}. This is initialized as zero and only the \textit{order\_paint(paint\_can *can)} function signals it while placing an order. Hence, when there is no can in the \textit{order\_buffer} the \textit{staff thread} will sleep on the counting semaphore \textit{order\_buffer\_full}.
+
+\subsection{void fill\_order(void *v)}
+In order to ensure parallel access to tints from different \textit{staff} threads in the case where same tints are not required for the specific paint can, we have created an array of binary semaphore \textit{access\_specific\_tints} of size \textit{NCOLORS} which approves access to all the tints which are not in use at the specific moment. We have put a wait on the binary semaphore \textit{tints\_mutex} before locking specific tints by using the semaphore array. After acquiring the lock for specific tints in use, the semaphore \textit{tints\_mutex} is signaled to release and then the function \textit{mix()} is called. Semaphore on wait for requested tints of the parameter paint can is released after mixing.
+
+\subsection{void serve\_order(void *v)}
+This function puts the mixed can on the \textit{delivery\_buffer} and signals the semaphore \textit{ready\_cans} on which the customer thread is waiting. Moreover, the binary semaphore \textit{delivery\_mutex} is used to control access to the critical region \textit{delivery\_buffer}. 
+
+\subsection{void paintshop\_close(void)}
+All the semaphores created before has been destroyed here.
+
+\end{document}
